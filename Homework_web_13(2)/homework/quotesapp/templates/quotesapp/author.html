@@ -1,0 +1,44 @@
+{% extends 'quotesapp/base.html' %}
+
+{% block content %}
+
+<div class="mb-3 border border-secondary text-center">
+    
+    <form method="POST" action="{% url 'quotesapp:author' %}" class="form-label p-5">
+        {% csrf_token %}
+        <p class="badge text-bg-primary text-wrap">Add Author</p>
+        <div style="padding: 10px">
+            <label class="form-label"> Fullname:<br>
+                {{ form.fullname }}
+            </label>
+            <span>{{ form.errors.fullname }}</span>
+        </div>
+        <div style="padding: 10px">
+            <label class="form-label"> Born date:<br>
+                {{ form.born_date }}
+            </label>
+            <span>{{ form.errors.born_date }}</span>
+        </div>
+        <div style="padding: 10px">
+            <label class="form-label"> Born location:<br>
+                {{ form.born_location }}
+            </label>
+            <span >{{ form.errors.born_location }}</span>
+        </div>
+    
+        <div style="padding: 10px">
+            <label class="form-label"> Description:<br>
+                <textarea name="description" rows="10" cols="50" required>{{ form.description.value|default:'' }}</textarea>
+            </label>
+            <span>{{ form.errors.description }}</span>
+        </div>
+    
+        <div class="grid">
+            <button type="submit" class="btn btn-success">Submit</button>
+            <button type="reset" class="btn btn-secondary">Reset</button>
+        </div>
+    </form>
+</div>
+
+
+{% endblock %}
